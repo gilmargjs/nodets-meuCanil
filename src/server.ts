@@ -6,12 +6,15 @@ import mainRoutes from './routes/index';
 
 dotenv.config();
 
+//CONFIGURANDO SERVIDOR
 const server = express();
 
-server.set('view engine', mustache);
+//servidor
+server.set('view engine', 'mustache');
+//onde vai ficar as pastas
 server.set('views', path.join(__dirname, 'views'));
 server.engine('mustache', mustache());
-
+//configurar a pasta public
 server.use(express.static(path.join(__dirname, '../public')));
 
 //rota main
@@ -19,7 +22,7 @@ server.use(mainRoutes);
 
 //rota não encontrada
 server.use((req, res)=>{
-  res.send('Pagina Não Encontrada!')
+  res.render('pages/404')
 });
 
 //Rotas
